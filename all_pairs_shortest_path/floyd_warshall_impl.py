@@ -1,5 +1,5 @@
-""" A solution to the all-pairs shortest path problem """
-__author__ = "Claus Martinsen"
+""" A solution to the all-pairs shortest path problem. """
+__author__ = 'Claus Martinsen'
 
 
 def floyd_warshall(adjacency_weight_matrix):
