@@ -1,9 +1,15 @@
+""" An implementation of the linear running-time sorting algorithm radix-sort. """
+__author__ = 'Claus Martinsen'
+
 def radix_sort(lst, digits):
     """
     Sorts a list of decimal integers in linear running-time by exploiting the
     fact that we know their upper bound. The upper bound is given as
-    10^(digits - 1), and all numbers has to be less than this for the algorithm
+    10^(digits) - 1, and all numbers has to be less than this for the algorithm
     to be correct.
+    
+    For example, lists with 9999 or 1234 as the greatest element should both
+    have digits=4, where as if the greatest element was 666, it should be digits=3.
 
     This implementation uses counting-sort to sort the numbers by each digit,
     but any stable sorting algorithm will do.
@@ -17,16 +23,17 @@ def radix_sort(lst, digits):
     :rtype: list
     """
     length = len(lst)
-    for digit in range(digits):  # Numbers have size up-to 10^(digits - 1)
-        lst = countingSort(lst, length, digit)
+    for digit in range(digits):  # Numbers have size up-to 10^(digits) - 1
+        lst = counting_sort(lst, length, digit)
     return lst
 
 
 def counting_sort(lst, lenght, position, base=10):
     """
-    Sorts a list of integers by counting the occurrences of the numbers 0 to 
-    base - 1.
-    
+    Sorts a list of integers by their digit at the given position. This is 
+    implemented by counting the occurrences of the numbers 0 to base - 1, and
+    placing the numbers back in a list accordingly.
+
     :param lst: A list of integers
     :type lst: list
     :param lenght: The length of the list to be sorted.
@@ -38,16 +45,19 @@ def counting_sort(lst, lenght, position, base=10):
     :return: The list sorted by digit number 'position'.
     :rtype: list
     """
-    countLst = [0] * base
-    outLst = [0] * lenght
+    count_lst = [0] * base
+    out_lst = [0] * lenght
+    
     for number in lst:  # Count all instances of numbers from 0 to base - 1
         d = (number // base ** position) % base  # Extracts the digit at the curent position from each number
-        countLst[d] += 1
+        count_lst[d] += 1
+        
     for j in range(1, base):  # Accumulate relative index placement
-        countLst[j] += countLst[j - 1]
+        count_lst[j] += count_lst[j - 1]
+        
     for number in reversed(lst):  # Place numbers
         d = (number // base ** position) % base
-        countLst[d] -= 1
-        outLst[countLst[d]] = number
+        count_lst[d] -= 1
+        out_lst[count_lst[d]] = number
 
-    return outLst
+    return out_lst
