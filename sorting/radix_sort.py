@@ -1,6 +1,7 @@
 """ An implementation of the linear running-time sorting algorithm radix-sort. """
 __author__ = 'Claus Martinsen'
 
+
 def radix_sort(lst, digits):
     """
     Sorts a list of decimal integers in linear running-time by exploiting the
@@ -59,5 +60,4 @@ def counting_sort(lst, lenght, position, base=10):
         d = (number // base ** position) % base
         count_lst[d] -= 1
         out_lst[count_lst[d]] = number
-
     return out_lst
