@@ -1,11 +1,11 @@
-""" An implementation of the linear running-time sorting algorithm radix-sort. """
+""" An implementation of the O(n) sorting algorithm (lsd) radix-sort. """
 __author__ = 'Claus Martinsen'
 
 
 def radix_sort(lst, digits):
     """
-    Sorts a list of decimal integers in linear running-time by exploiting the
-    fact that we know their upper bound. The upper bound is given as
+    Sorts a list of decimal integers in linear running-time by sorting by each
+    digit, from least significant to most significant. The upper bound is given as
     10^(digits) - 1, and all numbers has to be less than this for the algorithm
     to be correct.
     
