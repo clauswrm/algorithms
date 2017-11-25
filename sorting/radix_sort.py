@@ -61,3 +61,11 @@ def counting_sort(lst, lenght, position, base=10):
         count_lst[d] -= 1
         out_lst[count_lst[d]] = number
     return out_lst
+
+
+if __name__ == '__main__':
+    # Only executed when this module is run directly
+    # The following is an example of how to use the algorithm
+    
+    nums = [310, 71, 961, 42, 700, 369]
+    print(radix_sort(nums, 3))
