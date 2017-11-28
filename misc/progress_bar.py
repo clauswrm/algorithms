@@ -15,7 +15,7 @@ def update_progress(current, total, length=10):
 
 if __name__ == '__main__':
     # Only executed when this module is run directly
-    # The following is an example of how to use the algorithm
+    # The following is an example of how to use the module
 
     from time import sleep
 
