@@ -50,10 +50,10 @@ class Heap:
         _max = self.list[0]
         self.list[0] = self.list[self.heap_size - 1]
         self.heap_size -= 1
-        self.max_heapify(self.list, 0)
+        self.max_heapify(0)
         return _max
 
-    def max_heapify(self, heap, i):
+    def max_heapify(self, i):
         """ Maintains the max heap property for element 'i'. """
         l, r = self.left_child(i), self.right_child(i)
         if l < self.heap_size and self[l] > self[i]:
@@ -64,7 +64,7 @@ class Heap:
             largest = r
         if largest != i:
             self[i], self[largest] = self[largest], self[i]
-            self.max_heapify(heap, largest)
+            self.max_heapify(largest)
 
 
 def heap_sort(lst):
@@ -80,7 +80,7 @@ def heap_sort(lst):
     for i in range(heap.heap_size - 1, 0, -1):
         lst[0], lst[i] = lst[i], lst[0]
         heap.heap_size -= 1
-        heap.max_heapify(heap, 0)
+        heap.max_heapify(0)
     return heap.list
 
 
@@ -88,7 +88,7 @@ def build_max_heap(lst):
     """ Builds a max heap from the list. """
     heap = Heap(lst)
     for i in range(len(lst) // 2, -1, -1):
-        heap.max_heapify(heap, i)
+        heap.max_heapify(i)
     return heap
 
 
