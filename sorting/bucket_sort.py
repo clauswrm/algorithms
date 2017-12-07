@@ -1,7 +1,7 @@
 """ General and special implementations of bucket sort. """
 __author__ = 'Claus Martinsen'
 
-from insertion_sort import insertion_sort
+from algorithms.sorting.insertion_sort import insertion_sort
 
 
 def bucket_sort_0_1(lst):
