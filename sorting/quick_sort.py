@@ -58,20 +58,27 @@ def partition(lst, start, end):
     Partitions the list from index 'start' to index 'end' by choosing the last
     element as a pivot.
 
-    Partitions all smaller elements to the left and
-    all greater or equal elements to the right of the pivot.
+    Partitions all smaller elements to the left and all greater or equal
+    elements to the right of the pivot. Based on Hoares partition scheme.
 
     :return: The pivot index.
     :rtype: int
     """
-    x = lst[end]
+    x = lst[start]
     i = start - 1
-    for j in range(start, end):
-        if lst[j] <= x:
+    j = end + 1
+    while True:
+        i += 1
+        while lst[i] < x:
             i += 1
-            lst[i], lst[j] = lst[j], lst[i]
-    lst[i + 1], lst[end] = lst[end], lst[i + 1]
-    return i
+        j -= 1
+        while lst[j] > x:
+            j -= 1
+
+        if i >= j:
+            return j
+
+        lst[i], lst[j] = lst[j], lst[i]
 
 
 def randomized_partition(lst, start, end):
