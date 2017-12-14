@@ -23,7 +23,7 @@ def bucket_sort_0_1(lst):
     for num in lst:
         buckets[int(n * num)].append(num)
 
-    lst.clear() # Make the list ready for re-use
+    lst.clear()  # Make the list ready for re-use
     for bucket in buckets:
         if bucket:  # Do not sort empty lists
             lst += insertion_sort(bucket)  # Add the sorted bucket to the sorted list
@@ -61,7 +61,7 @@ def bucket_sort_general(lst, mapping):
     n = len(lst)
     buckets = [[] for _ in range(n)]
     for num in lst:
-        buckets[mapping(num) * n].append(num)
+        buckets[int(mapping(num) * n)].append(num)
 
     lst.clear()  # Make the list ready for re-use
     for bucket in buckets:
@@ -74,5 +74,13 @@ if __name__ == '__main__':
     # Only executed when this module is run directly
     # The following is an example of how to use the algorithm
 
-    l = [0.461, 0.059, 0.338, 0.649, 0.886, 0.585, 0.971, 0.404, 0.836, 0.185]
-    print(bucket_sort_0_1(l))
+    l1 = [0.461, 0.059, 0.338, 0.649, 0.886, 0.585, 0.971, 0.404, 0.836, 0.185]
+    l2 = [34, 68, 234, 876, 1, 46, 987, 32, 147, 567]
+
+
+    def mapper(n):
+        return n / 1000
+
+
+    print(bucket_sort_0_1(l1))
+    print(bucket_sort_general(l2, mapping=mapper))
